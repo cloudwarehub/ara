@@ -1,0 +1,25 @@
+<div class="container-fluid">
+    <div class="page-header">
+        <h2>Hosts
+            <button class="btn btn-success btn-sm" {{action "toggleModal"}}><span class="glyphicon glyphicon-plus"
+                                                                                  aria-hidden="true"></span> Add Host
+            </button>
+        </h2>
+    </div>
+</div>
+
+{{#bs-modal open=openModal title="Add Host"}}
+    <ol>
+        <li>Start up a Windows machine somewhere and make sure the machine can communicate with Fornax server.</li>
+        <li>Make sure any security groups or firewalls allow traffic:
+            From and To all other hosts on UDP ports 500 and 4500 (for IPsec networking)
+        </li>
+        <li>Copy, paste, and run the command below to register the host with Fornax:
+            <div class="copy-pre">
+                <pre id="registration-command">sudo docker run -d --privileged -v /var/run/docker.sock:/var/run/docker.sock -v /var/lib/rancher:/var/lib/rancher rancher/agent:v1.0.2 http://10.10.224.202:8080/v1/scripts/5ECF26FCB2D8042C173E:1469826000000:XMGFkyunxZoFZqJLkjr9upEliM</pre>
+            </div>
+        </li>
+        <li>Click OK below. The new host should pop up on the Hosts screen within a minute.</li>
+    </ol>
+{{/bs-modal}}
+{{outlet}}
