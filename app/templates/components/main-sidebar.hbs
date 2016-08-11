@@ -1,0 +1,14 @@
+<div class="main-sidebar">
+    <!-- Inner sidebar -->
+    <div class="sidebar">
+
+        <!-- Sidebar Menu -->
+        <ul class="sidebar-menu">
+            <li class="header">{{region.name}}</li>
+            <!-- Optionally, you can add icons to the links -->
+            {{#link-to 'regions.region.index' region tagName='li'}}<a href="#"><i class="glyphicon glyphicon-dashboard"></i><span>Dashboard</span></a>{{/link-to}}
+            {{#link-to 'regions.region.clusters' region tagName='li'}}<a href="#"><i class="glyphicon glyphicon-tasks"></i><span>Clusters</span></a>{{/link-to}}
+        </ul><!-- /.sidebar-menu -->
+
+    </div><!-- /.sidebar -->
+</div><!-- /.main-sidebar -->

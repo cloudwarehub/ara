@@ -1,0 +1,49 @@
+<div class="container content-area">
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">Regions</h3>
+        </div>
+        <div class="panel-body">
+          {{#each model as |region|}}
+              <div class="col-md-4">
+                  <div class="panel panel-default region-item">
+                      <div class="panel-body">
+                          <span class="flag-icon flag-icon-cn"></span>
+                          <div class="info text-center"><span
+                                  class="label label-success">{{region.city}}</span>
+                          </div>
+
+
+                          <div class="row">
+                              <div class="col-xs-4 text-center">
+                                  <div class="text-lg ng-binding">1</div>
+                                  <p class="m0">{{#link-to 'regions.region.clusters' region}}
+                                      Clusters{{/link-to}}</p></div>
+                              <div class="col-xs-4 text-center">
+                                  <div class="text-lg ng-binding">2</div>
+                                  <p class="m0">Hosts</p></div>
+                              <div class="col-xs-4 text-center">
+                                  <div class="text-lg ng-binding">4</div>
+                                  <p class="m0">Cloudwares</p></div>
+                          </div>
+                      </div>
+                      <div class="panel-footer" {{action "gotoRegion" region}}>{{region.name}}</div>
+                  </div>
+              </div>
+          {{/each}}
+              <div class="col-md-3">
+                  <div class="panel panel-default region-add-btn">
+                      <div class="panel-body text-center">
+                        {{#link-to 'regions.add'}}
+                            <span class="glyphicon glyphicon-plus-sign"></span>
+                        {{/link-to}}
+                      </div>
+                      <div class="panel-footer text-center">Add Region</div>
+                  </div>
+              </div>
+        </div>
+    </div>
+</div>
+
+

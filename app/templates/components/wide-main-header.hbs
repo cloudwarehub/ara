@@ -1,0 +1,24 @@
+<header class="main-header">
+  {{#link-to 'index' class="logo"}}
+      <!-- mini logo for sidebar mini 50x50 pixels -->
+      <span class="logo-mini">ARA</span>
+      <!-- logo for regular state and mobile devices -->
+      <span class="logo-lg"><img src="/logo.jpg" style="height: 40px;"> </span>
+  {{/link-to}}
+    <nav class="navbar navbar-static-top" role="navigation">
+        {{#if isRegions}}
+        {{else}}
+        <a role="button" data-toggle="offcanvas" class="sidebar-toggle" href="#">
+            <span class="sr-only">Toggle navigation</span>
+        </a>
+        {{/if}}
+        <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
+            <ul class="nav navbar-nav">
+                {{#link-to 'regions' class="button" tagName='li'}}<a href="#">REGIONS</a>{{/link-to}}
+                {{#link-to 'hosts' class="button" tagName='li'}}<a href="#">HOSTS</a>{{/link-to}}
+                {{#link-to 'cloudwares' class="button" tagName='li'}}<a href="#">CLOUDWARES</a>{{/link-to}}
+                {{#link-to 'settings' class="settings" tagName='li'}}<a href="#">SETTINGS</a>{{/link-to}}
+            </ul>
+        </div>
+    </nav>
+</header>

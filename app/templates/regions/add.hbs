@@ -1,0 +1,55 @@
+<div class="container content-area">
+    <div class="container-fluid region-add-container">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Add Region</h3>
+            </div>
+            <div class="panel-body">
+                <form class="form-horizontal">
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Region Name:</label>
+                        <div class="col-sm-10">
+                            {{input type='text' value=fields.name class='form-control' placeholder="Region Name"}}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Region Location:</label>
+                        <div class="col-sm-10">
+                          {{#power-select
+                          options=countries
+                          searchField="name"
+                          selected=destination
+                          onchange=(action "cg")
+                          as |country|
+                          }}
+                              <img src="{{country.flagUrl}}" class="icon-flag">
+                              <strong>{{country.name}}</strong>
+                          {{/power-select}}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">City:</label>
+                        <div class="col-sm-10">
+                          {{input type='text' value=fields.city class='form-control' placeholder="City"}}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Description:</label>
+                        <div class="col-sm-10">
+                          {{input type='text' value=fields.description class='form-control' placeholder="Description"}}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <button type="submit" class="btn btn-success" {{action 'submit' model}}>Submit</button>
+                            <button type="button" class="btn btn-default" {{action "cancle"}}>Cancle
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+
+</div>

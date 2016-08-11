@@ -1,0 +1,220 @@
+$dark: #203040;
+
+body, html {
+  height: 100%;
+  color: #515253;
+}
+
+.ember-view {
+  height: 100%;
+}
+
+.wrapper {
+  position: relative;
+  width: 100%;
+  height: auto;
+  min-height: 100%;
+  overflow-x: hidden;
+  background-color: #ecf0f5 !important;
+}
+
+.main-sidebar {
+  border-right: 1px solid #d2d6de;
+}
+
+footer {
+  clear: both;
+  position: relative;
+  z-index: 10;
+  height: 60px;
+  margin-top: -60px;
+  border-top: 1px solid #d4dadc;
+  padding: 20px;
+}
+
+.content-wrapper {
+  height: auto;
+  border-left: 0 !important;
+  padding-bottom: 60px;
+
+}
+
+.content-area {
+  padding-top: 20px;
+}
+
+a:focus, a:hover {
+  color: #68b9bf;
+  text-decoration: none
+}
+
+.text-lg {
+  font-size: 32px;
+}
+
+.region-item {
+  border-color: $dark;
+  .panel-body {
+    overflow: hidden;
+    position: relative;
+    height: 100px;
+  }
+  .panel-footer {
+    background-color: $dark;
+    color: #fff;
+    cursor: pointer;
+  }
+  .flag-icon {
+    position: absolute;
+    height: 24px;
+    width: 32px;
+    right: 0;
+    top: 0;
+  }
+  .info {
+    margin-top: -10px;
+  }
+}
+
+.region-add-btn {
+  max-width: 150px;
+  span {
+    font-size: 76px;
+  }
+  .panel-body {
+    height: 100px;
+  }
+}
+
+.region-add-container {
+  max-width: 70%;
+}
+
+.ember-power-select-option img, .ember-power-select-selected-item img {
+  height: 24px;
+  width: 36px;
+}
+
+.modal-dialog {
+  min-width: 800px;
+}
+
+.timeline > li > .timeline-item > .timeline-header {
+  border-bottom: 0;
+}
+
+pre {
+  word-wrap: break-word;
+  white-space: -moz-pre-wrap;
+  white-space: pre-wrap;
+}
+
+.sk-folding-cube {
+  margin: 20px auto;
+  width: 40px;
+  height: 40px;
+  position: relative;
+  -webkit-transform: rotateZ(45deg);
+  transform: rotateZ(45deg);
+}
+
+.sk-folding-cube .sk-cube {
+  float: left;
+  width: 50%;
+  height: 50%;
+  position: relative;
+  -webkit-transform: scale(1.1);
+  -ms-transform: scale(1.1);
+  transform: scale(1.1);
+}
+
+.sk-folding-cube .sk-cube:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #333;
+  -webkit-animation: sk-foldCubeAngle 2.4s infinite linear both;
+  animation: sk-foldCubeAngle 2.4s infinite linear both;
+  -webkit-transform-origin: 100% 100%;
+  -ms-transform-origin: 100% 100%;
+  transform-origin: 100% 100%;
+}
+
+.sk-folding-cube .sk-cube2 {
+  -webkit-transform: scale(1.1) rotateZ(90deg);
+  transform: scale(1.1) rotateZ(90deg);
+}
+
+.sk-folding-cube .sk-cube3 {
+  -webkit-transform: scale(1.1) rotateZ(180deg);
+  transform: scale(1.1) rotateZ(180deg);
+}
+
+.sk-folding-cube .sk-cube4 {
+  -webkit-transform: scale(1.1) rotateZ(270deg);
+  transform: scale(1.1) rotateZ(270deg);
+}
+
+.sk-folding-cube .sk-cube2:before {
+  -webkit-animation-delay: 0.3s;
+  animation-delay: 0.3s;
+}
+
+.sk-folding-cube .sk-cube3:before {
+  -webkit-animation-delay: 0.6s;
+  animation-delay: 0.6s;
+}
+
+.sk-folding-cube .sk-cube4:before {
+  -webkit-animation-delay: 0.9s;
+  animation-delay: 0.9s;
+}
+
+@-webkit-keyframes sk-foldCubeAngle {
+  0%, 10% {
+    -webkit-transform: perspective(140px) rotateX(-180deg);
+    transform: perspective(140px) rotateX(-180deg);
+    opacity: 0;
+  }
+  25%, 75% {
+    -webkit-transform: perspective(140px) rotateX(0deg);
+    transform: perspective(140px) rotateX(0deg);
+    opacity: 1;
+  }
+  90%, 100% {
+    -webkit-transform: perspective(140px) rotateY(180deg);
+    transform: perspective(140px) rotateY(180deg);
+    opacity: 0;
+  }
+}
+
+@keyframes sk-foldCubeAngle {
+  0%, 10% {
+    -webkit-transform: perspective(140px) rotateX(-180deg);
+    transform: perspective(140px) rotateX(-180deg);
+    opacity: 0;
+  }
+  25%, 75% {
+    -webkit-transform: perspective(140px) rotateX(0deg);
+    transform: perspective(140px) rotateX(0deg);
+    opacity: 1;
+  }
+  90%, 100% {
+    -webkit-transform: perspective(140px) rotateY(180deg);
+    transform: perspective(140px) rotateY(180deg);
+    opacity: 0;
+  }
+}
+
+.cluster-add-panel a {
+  display: block;
+  font-size: 50px;
+  text-align: center;
+  color: #3e534b;
+  &:hover {
+    color: #008baf;
+  }
+}

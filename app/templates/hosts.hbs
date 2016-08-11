@@ -6,6 +6,34 @@
             </button>
         </h2>
     </div>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Label</th>
+            <th>Ip</th>
+            <th>Status</th>
+        </tr>
+        </thead>
+        <tbody>
+        {{#each model as | host|}}
+          <tr>
+              <td>{{host.id}}</td>
+              <td>{{host.label}}</td>
+              <td>{{host.ip}}</td>
+              <td><label class="label label-success">online</label></td>
+          </tr>
+        {{/each}}
+    </tbody>
+    </table>
+    <div class="row">
+      {{#each model as |host|}}
+          <div class="col-md-3">
+
+          </div>
+      {{/each}}
+    </div>
+
 </div>
 
 {{#bs-modal open=openModal title="Add Host"}}

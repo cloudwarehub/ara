@@ -1,0 +1,116 @@
+
+<section class="content">
+  {{#each model as |cluster|}}
+      <div class="nav-tabs-custom">
+          <ul class="nav nav-tabs">
+              <li class="pull-left header"><i class="fa fa-th"></i> {{cluster.name}}</li>
+              <li class="active"><a href="#tab_1-1-{{cluster.id}}" data-toggle="tab">Compute Pool</a></li>
+              <li><a href="#tab_2-2-{{cluster.id}}" data-toggle="tab">Network Pool</a></li>
+              <li><a href="#tab_3-2-{{cluster.id}}" data-toggle="tab">Storage Pool</a></li>
+
+          </ul>
+          <div class="tab-content">
+              <div class="tab-pane active" id="tab_1-1-{{cluster.id}}">
+
+                  <button class="btn btn-primary" {{action "modal" cluster "compute"}}><i class="glyphicon glyphicon-plus"></i> Add Host</button>
+
+                  <div class="box-body">
+                      <div class="table-responsive">
+                          <table class="table no-margin">
+                              <thead>
+                              <tr>
+                                  <th>ID</th>
+                                  <th>Name</th>
+                                  <th>Status</th>
+                                  <th>Operation</th>
+                              </tr>
+                              </thead>
+                              <tbody>
+                              {{#each cluster.hosts as |host|}}
+                                  <tr>
+                                      <td><a href="#">{{host.id}}</a></td>
+                                      <td>{{host.name}}</td>
+                                      <td><span class="label label-success">Online</span></td>
+                                      <td>
+                                      </td>
+                                  </tr>
+                              {{/each}}
+                              </tbody>
+                          </table>
+                      </div>
+                      <!-- /.table-responsive -->
+                  </div>
+              </div>
+              <!-- /.tab-pane -->
+              <div class="tab-pane" id="tab_2-2-{{cluster.id}}">
+                  <button class="btn btn-primary" {{action "modal" cluster "network"}}><i class="glyphicon glyphicon-plus"></i> Add Host</button>
+              </div>
+              <!-- /.tab-pane -->
+              <div class="tab-pane" id="tab_3-2-{{cluster.id}}">
+                  <button class="btn btn-primary" {{action "modal" cluster "storage"}}><i class="glyphicon glyphicon-plus"></i> Add Host</button>
+              </div>
+              <!-- /.tab-pane -->
+          </div>
+          <!-- /.tab-content -->
+      </div>
+  {{/each}}
+    <div class="panel cluster-add-panel">
+
+      {{#link-to 'regions.region.clusters.add'}}
+          <i class="glyphicon glyphicon-plus"></i>
+      {{/link-to}}
+
+    </div>
+</section>
+{{#bs-modal title="Add Host" open=openModal}}
+    <ul class="timeline">
+
+        <!-- timeline item -->
+        <li>
+            <!-- timeline icon -->
+            <i class="fa bg-red">1</i>
+            <div class="timeline-item">
+
+                <h3 class="timeline-header">Prepare A Host</h3>
+
+                <div class="timeline-body">
+                    Create a Linux/Windows host, and install nodejs environment.
+                </div>
+
+            </div>
+        </li>
+        <li>
+            <!-- timeline icon -->
+            <i class="fa bg-green">2</i>
+            <div class="timeline-item">
+
+                <h3 class="timeline-header">Install Host Agent: Corona</h3>
+
+                <div class="timeline-body">
+                    Login to the host, and run command bellow:
+                    <pre>{{cmd}}</pre>
+                </div>
+
+            </div>
+        </li>
+        <li>
+            <!-- timeline icon -->
+            <i class="fa bg-blue">3</i>
+            <div class="timeline-item">
+
+                <h3 class="timeline-header">Waiting for host Connecting...</h3>
+
+                <div class="timeline-body">
+                    <div class="sk-folding-cube">
+                        <div class="sk-cube1 sk-cube"></div>
+                        <div class="sk-cube2 sk-cube"></div>
+                        <div class="sk-cube4 sk-cube"></div>
+                        <div class="sk-cube3 sk-cube"></div>
+                    </div>
+                </div>
+
+            </div>
+        </li>
+
+    </ul>
+{{/bs-modal}}
