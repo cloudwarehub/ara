@@ -7,7 +7,12 @@ const Router = Ember.Router.extend({
 });
 
 Router.map(function() {
-  this.route('cloudwares');
+  this.route('cloudwares', function() {
+    this.route('add');
+    this.route('cloudware', {path: '/:cloudware_id'}, function() {
+      this.route('versions', function() {});
+    });
+  });
   this.route('settings');
   this.route('hosts');
   this.route('regions', function() {
@@ -15,6 +20,12 @@ Router.map(function() {
     this.route('region', {path: '/:region_id'}, function() {
       this.route('clusters', function() {
         this.route('add');
+
+        this.route('cluster', {path: '/:cluster_id'}, function() {
+          this.route('hosts', function() {
+            this.route('add');
+          });
+        });
       });
     });
   });

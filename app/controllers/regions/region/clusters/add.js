@@ -1,6 +1,8 @@
 import Ember from 'ember';
 
 export default Ember.Controller.extend({
+  type: 'compute',
+  host: window.API_HOST,
   actions: {
     cancle() {
       this.transitionToRoute('regions.region.clusters');

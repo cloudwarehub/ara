@@ -2,6 +2,6 @@ import Ember from 'ember';
 
 export default Ember.Route.extend({
   model(params) {
-    return this.get('store').findRecord('region', params.region_id, {reload: true});
+    return this.store.findRecord('cloudware', params.cloudware_id);
   }
 });

@@ -1,0 +1,37 @@
+<section class="content-header">
+    <h1>
+        Cloudwares
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Cloudwares</a></li>
+    </ol>
+</section>
+<section class="content">
+    <div class="row">
+        {{#each model as |cloudware|}}
+        <div class="col-md-3 col-sm-6 col-xs-12" {{action 'detail' cloudware}}>
+            <div class="info-box">
+                <span class="info-box-icon"><img src="{{image-prefix cloudware.logo}}"></span>
+
+                <div class="info-box-content">
+                    <span class="info-box-text">{{cloudware.name}}</span>
+                    <span class="info-box-number">{{cloudware.description}}</span>
+                </div>
+                <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+        </div>
+        {{/each}}
+
+        <div class="col-md-3">
+            <div class="panel panel-default cloudware-add-btn">
+                <div class="panel-body text-center">
+                  {{#link-to 'cloudwares.add'}}
+                      <span class="glyphicon glyphicon-plus-sign"></span>
+                  {{/link-to}}
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>

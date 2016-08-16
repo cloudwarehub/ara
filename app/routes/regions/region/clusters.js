@@ -1,9 +1,11 @@
 import Ember from 'ember';
 
 export default Ember.Route.extend({
-  model() {
-    var clusters = this.modelFor('regions.region').get('clusters');
+  setupController(controller) {
     
-    return clusters;
+  },
+  model() {
+    var region = this.modelFor('regions.region');
+    return region.get('clusters');
   }
 });

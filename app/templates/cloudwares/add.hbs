@@ -1,0 +1,44 @@
+<div class="container content-area">
+    <div class="container-fluid region-add-container">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Add Cloudware</h3>
+            </div>
+            <div class="panel-body">
+                <form class="form-horizontal">
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Name:</label>
+                        <div class="col-sm-10">
+                          {{input type='text' value=fields.name class='form-control' placeholder="Cloudware Name"}}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Description:</label>
+                        <div class="col-sm-10">
+                          {{input type='text' value=fields.description class='form-control' placeholder="Description"}}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Logo:</label>
+                        <div class="col-sm-10">
+                            {{#if file}}
+                                <img src="{{file}}" style="max-height: 64px;">
+                            {{else}}
+                              {{file-upload uploaded=(action 'uploaded')}}
+                            {{/if}}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <button type="submit" class="btn btn-success" {{action 'submit' fields}}>Submit</button>
+                            <button type="button" class="btn btn-default" {{action "cancle"}}>Cancle
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+
+</div>

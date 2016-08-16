@@ -1,7 +1,16 @@
-
+<section class="content-header">
+    <h1>
+        Clusters
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Region</a></li>
+        <li class="active">Clusters</li>
+    </ol>
+</section>
 <section class="content">
   {{#each model as |cluster|}}
       <div class="nav-tabs-custom">
+          {{#link-to 'regions.region.clusters.cluster.hosts.add' cluster.region cluster class="btn btn-primary pull-right" tagName='button'}}<i class="glyphicon glyphicon-plus"></i>{{/link-to}}
           <ul class="nav nav-tabs">
               <li class="pull-left header"><i class="fa fa-th"></i> {{cluster.name}}</li>
               <li class="active"><a href="#tab_1-1-{{cluster.id}}" data-toggle="tab">Compute Pool</a></li>
@@ -9,18 +18,21 @@
               <li><a href="#tab_3-2-{{cluster.id}}" data-toggle="tab">Storage Pool</a></li>
 
           </ul>
+
           <div class="tab-content">
               <div class="tab-pane active" id="tab_1-1-{{cluster.id}}">
 
-                  <button class="btn btn-primary" {{action "modal" cluster "compute"}}><i class="glyphicon glyphicon-plus"></i> Add Host</button>
 
                   <div class="box-body">
                       <div class="table-responsive">
                           <table class="table no-margin">
                               <thead>
                               <tr>
-                                  <th>ID</th>
-                                  <th>Name</th>
+                                  <th style="width: 290px">ID</th>
+                                  <th>Hostname</th>
+                                  <th>Platform</th>
+                                  <th>Ip</th>
+                                  <th>Capacity</th>
                                   <th>Status</th>
                                   <th>Operation</th>
                               </tr>
@@ -29,7 +41,10 @@
                               {{#each cluster.hosts as |host|}}
                                   <tr>
                                       <td><a href="#">{{host.id}}</a></td>
-                                      <td>{{host.name}}</td>
+                                      <td>{{host.hostname}}</td>
+                                      <td><i class="fa fa-windows" aria-hidden="true"></i> {{host.ostype}}-{{host.arch}}</td>
+                                      <td>{{host.ips}}</td>
+                                      <td>{{host.cpus}} Cpu {{transform-size host.totalmem 'GB'}}GB Mem</td>
                                       <td><span class="label label-success">Online</span></td>
                                       <td>
                                       </td>
@@ -43,11 +58,15 @@
               </div>
               <!-- /.tab-pane -->
               <div class="tab-pane" id="tab_2-2-{{cluster.id}}">
-                  <button class="btn btn-primary" {{action "modal" cluster "network"}}><i class="glyphicon glyphicon-plus"></i> Add Host</button>
+                  <button class="btn btn-primary" {{action "modal" cluster "network"}}><i
+                          class="glyphicon glyphicon-plus"></i> Add Host
+                  </button>
               </div>
               <!-- /.tab-pane -->
               <div class="tab-pane" id="tab_3-2-{{cluster.id}}">
-                  <button class="btn btn-primary" {{action "modal" cluster "storage"}}><i class="glyphicon glyphicon-plus"></i> Add Host</button>
+                  <button class="btn btn-primary" {{action "modal" cluster "storage"}}><i
+                          class="glyphicon glyphicon-plus"></i> Add Host
+                  </button>
               </div>
               <!-- /.tab-pane -->
           </div>
@@ -62,55 +81,3 @@
 
     </div>
 </section>
-{{#bs-modal title="Add Host" open=openModal}}
-    <ul class="timeline">
-
-        <!-- timeline item -->
-        <li>
-            <!-- timeline icon -->
-            <i class="fa bg-red">1</i>
-            <div class="timeline-item">
-
-                <h3 class="timeline-header">Prepare A Host</h3>
-
-                <div class="timeline-body">
-                    Create a Linux/Windows host, and install nodejs environment.
-                </div>
-
-            </div>
-        </li>
-        <li>
-            <!-- timeline icon -->
-            <i class="fa bg-green">2</i>
-            <div class="timeline-item">
-
-                <h3 class="timeline-header">Install Host Agent: Corona</h3>
-
-                <div class="timeline-body">
-                    Login to the host, and run command bellow:
-                    <pre>{{cmd}}</pre>
-                </div>
-
-            </div>
-        </li>
-        <li>
-            <!-- timeline icon -->
-            <i class="fa bg-blue">3</i>
-            <div class="timeline-item">
-
-                <h3 class="timeline-header">Waiting for host Connecting...</h3>
-
-                <div class="timeline-body">
-                    <div class="sk-folding-cube">
-                        <div class="sk-cube1 sk-cube"></div>
-                        <div class="sk-cube2 sk-cube"></div>
-                        <div class="sk-cube4 sk-cube"></div>
-                        <div class="sk-cube3 sk-cube"></div>
-                    </div>
-                </div>
-
-            </div>
-        </li>
-
-    </ul>
-{{/bs-modal}}

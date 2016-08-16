@@ -7,6 +7,8 @@
     "bootstrap": "~3.3.5",
     "urijs": "^1.18.1",
     "flag-icon-css": "^2.3.1",
-    "AdminLTE": "adminlte#^2.3.6"
+    "AdminLTE": "adminlte#^2.3.6",
+    "socket.io-client": "^1.4.8",
+    "dinosheets": "0.1.1"
   }
 }

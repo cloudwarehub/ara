@@ -1,0 +1,124 @@
+<section class="content-header">
+    <h1>
+      {{cluster.name}} <small>Add host to cluster</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Region</a></li>
+        <li class="active">Clusters</li>
+    </ol>
+</section>
+<section class="content">
+    <ul class="timeline">
+
+        <!-- timeline item -->
+        <li>
+            <!-- timeline icon -->
+            <i class="fa bg-red">1</i>
+            <div class="timeline-item">
+
+                <h3 class="timeline-header">Prepare A Host</h3>
+
+                <div class="timeline-body">
+                    Create a Linux/Windows host, and install nodejs environment.
+                </div>
+
+            </div>
+        </li>
+        <li>
+            <!-- timeline icon -->
+            <i class="fa bg-green">2</i>
+            <div class="timeline-item">
+
+                <h3 class="timeline-header">Config host</h3>
+
+                <div class="timeline-body">
+                    <form class="form-horizontal">
+                        <div class="form-group">
+                            <label for="inputEmail3" class="col-sm-2 control-label">Host type:</label>
+                            <div class="col-sm-10">
+
+                                <label class="radio-inline">
+                                    <input type="radio" name="inlineRadioOptions" id="inlineRadio1"
+                                           checked="checked" {{action 'typeChanged' 'compute' preventDefault=false}}>
+                                    Compute
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="inlineRadioOptions"
+                                           id="inlineRadio2" {{action 'typeChanged' 'network' preventDefault=false}}>
+                                    Network
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="inlineRadioOptions"
+                                           id="inlineRadio3" {{action 'typeChanged' 'storage' preventDefault=false}}>
+                                    Storage
+                                </label>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+
+            </div>
+        </li>
+        <li>
+            <!-- timeline icon -->
+            <i class="fa bg-puple">3</i>
+            <div class="timeline-item">
+
+                <h3 class="timeline-header">Install Host Agent: Corona</h3>
+
+                <div class="timeline-body">
+                    Login to the host, and run command bellow:
+                    <pre>(new-object System.Net.WebClient).DownloadFile("{{host}}/install.ps1", "C:/install.ps1");C:/install.ps1 {{host}} {{token}} {{type}} {{cluster.id}}</pre>
+                </div>
+
+            </div>
+        </li>
+        <li>
+            <!-- timeline icon -->
+            <i class="fa bg-blue">4</i>
+            <div class="timeline-item">
+
+                <h3 class="timeline-header">Waiting for host connecting...</h3>
+
+                <div class="timeline-body">
+                  {{#if newhost}}
+                      <div class="callout callout-success">
+                          <p class="">A new host has been added to fonax!</p>
+                      </div>
+                      <table class="table table-condensed">
+                          <tbody>
+                          <tr>
+                              <th>Platform</th>
+                              <th>Hostname</th>
+                              <th>Cpus</th>
+                              <th>Mem</th>
+                              <th>Ip</th>
+                              <th>Pool</th>
+                          </tr>
+                          <tr>
+                              <td>{{newhost.ostype}}-{{newhost.arch}}</td>
+                              <td>{{newhost.hostname}}</td>
+                              <td>{{newhost.cpus.length}}</td>
+                              <td>{{transform-size newhost.totalmem 'GB'}} GB</td>
+                              <td>{{#each newhost.ips as |ip|}}<p>{{ip}}</p>{{/each}}</td>
+                              <td>{{newhost.pool}}</td>
+                          </tr>
+                          </tbody>
+                      </table>
+                  {{else}}
+                      <div class="sk-folding-cube">
+                          <div class="sk-cube1 sk-cube"></div>
+                          <div class="sk-cube2 sk-cube"></div>
+                          <div class="sk-cube4 sk-cube"></div>
+                          <div class="sk-cube3 sk-cube"></div>
+                      </div>
+                  {{/if}}
+                </div>
+
+            </div>
+        </li>
+
+    </ul>
+    <div class="center-block"><button class='btn btn-success center-block' {{action 'ok'}}>OK</button></div>
+</section>
