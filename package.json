@@ -50,5 +50,8 @@
     "ember-welcome-page": "^1.0.1",
     "loader.js": "^4.0.1",
     "mock-socket": "4.0.1"
+  },
+  "dependencies": {
+    "ember-cli-htmlbars": "^1.1.0"
   }
 }
