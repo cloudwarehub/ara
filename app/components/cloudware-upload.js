@@ -3,7 +3,7 @@ import EmberUploader from 'ember-uploader';
 export default EmberUploader.FileField.extend({
   filesDidChange: function(files) {
     const uploader = EmberUploader.Uploader.create({
-      url: window.API_HOST + '/upload'
+      url: window.API_HOST + '/cloudwares/upload'
     });
     var self = this;
 

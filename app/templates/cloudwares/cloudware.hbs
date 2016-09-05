@@ -9,7 +9,7 @@
                 <div class="title-info">
                   {{model.description}}
                 </div>
-                <button class="btn btn-success"><i class="glyphicon glyphicon-play-circle"></i> Deploy latest version
+                <button class="btn btn-success"><i class="glyphicon glyphicon-open"></i> Deploy latest version
                 </button>
                 <button class="btn btn-primary" {{action 'showModal'}}><i class="glyphicon glyphicon-plus"></i> Create
                     new version
@@ -26,12 +26,24 @@
             <div class="tab-pane active" id="tab_2">
                 <table class="table table-striped">
                     <tbody>
-                    <tr>
-                        <td>v1.0.0</td>
-                        <td>comment</td>
-                        <td>2016-6-6</td>
-                        <td>run</td>
-                    </tr>
+                    {{#each sortedModels as |version|}}
+                        <tr>
+                            <td>{{version.name}}</td>
+                            <td>{{version.comment}}</td>
+                            <td style="width: 310px;">{{version.created_at}}</td>
+                            <td style="width: 100px;">
+                                <a href="#" {{action 'showDeployModal' version}}><i data-toggle="tooltip"
+                                                                                    data-placement="bottom"
+                                                                                    title="Deploy this version"
+                                                                                    class="glyphicon glyphicon-open text-success"
+                                                                                    style="margin-right: 20px;"></i></a>
+                                <a href="{{cloudware-prefix version.image}}" target="_blank"><i data-toggle="tooltip"
+                                                                                                data-placement="bottom"
+                                                                                                title="Download image"
+                                                                                                class="glyphicon glyphicon-download-alt"></i></a>
+                            </td>
+                        </tr>
+                    {{/each}}
                     </tbody>
                 </table>
             </div>
@@ -42,7 +54,7 @@
 </div>
 {{#bs-modal open=versionModal title="New Version" body=false footer=false}}
   {{#bs-modal-body}}
-    {{#bs-form action=(action "submit") model=this}}
+    {{#bs-form action=(action "submit") model=fields}}
       {{bs-form-element controlType="text" label="Version " placeholder="eg. v1.0.0" property="name"}}
       {{bs-form-element controlType="text" label="Comment" placeholder="comment of this version" property="comment"}}
       <div class="form-group">
@@ -52,10 +64,48 @@
             {{bs-progress-bar value=progressValue minValue=0 maxValue=100 showLabel=true type="success"}}
           {{/bs-progress}}
         {{else}}
-          {{cloudware-upload progress=(action 'progress')}}
+          {{cloudware-upload progress=(action 'progress') uploaded=(action 'uploaded')}}
         {{/if}}
       </div>
     {{/bs-form}}
   {{/bs-modal-body}}
   {{bs-modal-footer closeTitle="Cancle" submitTitle="Submit"}}
+{{/bs-modal}}
+{{#bs-modal open=deployModal title="Deploy" body=false footer=false}}
+  {{#bs-modal-body}}
+    {{#bs-form action=(action "deploy") model=deployVersion}}
+        <div class="form-group">
+            <label class="control-label ">Version: </label>
+            <p>{{deployVersion.name}}</p>
+        </div>
+        <div class="form-group">
+            <label class="control-label ">Region: </label>
+            <select class="form-control" onchange={{action "cg" value="target.value"}}>
+                <option></option>
+              {{#each regions as |region|}}
+                  <option value="{{region.id}}">{{region.name}}</option>
+              {{/each}}
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="control-label ">Cluster: </label>
+            <select class="form-control" onchange={{action "clusterChange" value="target.value"}}>
+                <option></option>
+              {{#each clusters as |cluster|}}
+                  <option value="{{cluster.id}}">{{cluster.name}}</option>
+              {{/each}}
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="control-label ">Host: </label>
+            <select class="form-control" onchange={{action "hostChange" value="target.value"}}>
+                <option></option>
+              {{#each hosts as |host|}}
+                  <option value="{{host.id}}">{{host.name}} ({{host.hostname}})</option>
+              {{/each}}
+            </select>
+        </div>
+    {{/bs-form}}
+  {{/bs-modal-body}}
+  {{bs-modal-footer closeTitle="Cancle" submitTitle="Deploy"}}
 {{/bs-modal}}

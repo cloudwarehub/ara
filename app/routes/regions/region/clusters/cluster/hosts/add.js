@@ -9,10 +9,11 @@ export default Ember.Route.extend({
     this.store.findRecord('cluster', cluster.get('id')).then(function(cluster) {
       var token = cluster.get('token');
       controller.set('token', token);
-      var socket = controller.get('socketIOService').socketFor('ws://192.168.1.224:3001/ara');
+      var socket = controller.get('socketIOService').socketFor(window.API_HOST + '/ara');
       socket.on('new_host', function(msg) {
-        if (msg.data.attributes.token == token) {
-          controller.set('newhost', msg.data.attributes);
+        if (msg.data.attributes.token === token) {
+          var nh = this.store.findRecord('host', msg.data.id);
+          controller.set('newhost', nh);
         }
       }, self);
     });
@@ -36,7 +37,7 @@ export default Ember.Route.extend({
     //   }, this);
     // });
   },
-  model(params) {
+  model() {
     return this.modelFor('regions.region.clusters.cluster');
   }
 });

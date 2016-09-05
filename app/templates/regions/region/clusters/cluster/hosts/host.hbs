@@ -1,0 +1,94 @@
+<section class="content-header">
+    <h1>
+        Host
+        <small>{{model.name}}</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li>{{#link-to 'regions.region' model.cluster.region}}<i class="fa fa-dashboard"></i> Region{{/link-to}}</li>
+        <li class="">{{#link-to 'regions.region.clusters' model.cluster.region}}Clusters{{/link-to}}</li>
+        <li class="active">Host</li>
+    </ol>
+</section>
+<section class="content">
+    <div class="box box-success">
+
+        <div class="box-header with-border">
+            <h3 class="box-title">Host Info</h3>
+
+            <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+            </div>
+        </div>
+        <div class="box-body">
+            <table class="table no-margin">
+                <thead>
+                <tr>
+                    <th style="width: 290px">ID</th>
+                    <th>Hostname</th>
+                    <th>Platform</th>
+                    <th>Ip</th>
+                    <th>Capacity</th>
+                    <th>Status</th>
+                    <th>Operation</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>{{#link-to 'regions.region.clusters.cluster.hosts.host' model.cluster model}}{{model.id}}{{/link-to}}</td>
+                    <td>{{model.hostname}}</td>
+                    <td><i class="fa fa-windows" aria-hidden="true"></i> {{model.ostype}}-{{model.arch}}</td>
+                    <td>{{model.ips}}</td>
+                    <td>{{model.cpus}} Cpu {{transform-size model.totalmem 'GB'}}GB Mem</td>
+                    <td><span class="label label-success">Online</span></td>
+                    <td>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="box box-danger">
+        <div class="box-header with-border">
+            <h3 class="box-title">Deployments</h3>
+
+            <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+            </div>
+        </div>
+        <div class="box-body">
+            <table class="table no-margin">
+                <thead>
+                <tr>
+                    <th>Cloudware</th>
+                    <th>Version</th>
+                    <th>Created time</th>
+                    <th>Instances</th>
+                    <th>Operation</th>
+                </tr>
+                </thead>
+                <tbody>
+                {{#each model.deployments as |deployment|}}
+                    <tr>
+                        <td><img src="{{api-host '1'}}/uploads/{{deployment.version.cloudware.logo}}" style="height: 30px;"> {{deployment.version.cloudware.name}}</td>
+                        <td>{{deployment.version.name}}</td>
+                        <td>{{deployment.created_at}}</td>
+                        <td>0</td>
+                        <td><a href="#"><i data-toggle="tooltip"
+                               data-placement="bottom"
+                               title="Run this deployment"
+                               class="glyphicon glyphicon-play text-success"
+                               style="margin-right: 20px;" {{action 'run' deployment}}></i></a>
+                            <a href="#"><i data-toggle="tooltip"
+                               data-placement="bottom"
+                               title="Remove this deployment"
+                               class="glyphicon glyphicon-remove text-danger"></i></a>
+                        </td>
+                    </tr>
+                {{/each}}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>

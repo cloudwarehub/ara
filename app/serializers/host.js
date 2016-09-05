@@ -6,7 +6,7 @@ export default DS.JSONAPISerializer.extend({
     var str = payload.data.attributes.cpus.replace(/=>/g, ':');
     var cpus = JSON.parse(str);
 
-    payload.data.attributes.ips = ips.join(', ');
+    payload.data.attributes.ips = JSON.parse(payload.data.attributes.ips);
 
     payload.data.attributes.cpus = cpus.length;
 

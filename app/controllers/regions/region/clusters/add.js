@@ -16,7 +16,7 @@ export default Ember.Controller.extend({
       //   c.set('region', self.get('model'))
       //   c.save();
       // });
-      cluster.save();//.then(() => this.transitionToRoute('regions'));
+      cluster.save().then(() => this.transitionToRoute('regions.region.clusters', cluster.get('region')));
     }
   }
 });

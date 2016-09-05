@@ -9,6 +9,7 @@
     "flag-icon-css": "^2.3.1",
     "AdminLTE": "adminlte#^2.3.6",
     "socket.io-client": "^1.4.8",
-    "dinosheets": "0.1.1"
+    "dinosheets": "0.1.1",
+    "select2": "3.5.2"
   }
 }

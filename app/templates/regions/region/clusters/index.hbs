@@ -40,7 +40,7 @@
                               <tbody>
                               {{#each cluster.hosts as |host|}}
                                   <tr>
-                                      <td><a href="#">{{host.id}}</a></td>
+                                      <td>{{#link-to 'regions.region.clusters.cluster.hosts.host' host.cluster host}}{{host.id}}{{/link-to}}</td>
                                       <td>{{host.hostname}}</td>
                                       <td><i class="fa fa-windows" aria-hidden="true"></i> {{host.ostype}}-{{host.arch}}</td>
                                       <td>{{host.ips}}</td>
