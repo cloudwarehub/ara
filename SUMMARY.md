@@ -1,4 +1,4 @@
 # Table of contents
 
-* [Ara](README.md)
+* [Initial page1](README.md)
 
